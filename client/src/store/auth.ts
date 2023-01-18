@@ -10,6 +10,7 @@ type State = {
 type Actions = {
         setToken: (token: string) => void
         setProfile: (profile: any) => void
+        logout : () => void
 }
 
 
@@ -23,6 +24,11 @@ export const useAuthStore = create(persist<State & Actions>((set) => ({
         })),
         setProfile: (profile: any) => set((state) => ({
                 profile
+        })),
+        logout: () => set((state) =>({
+                token: '',
+                isAuth: false,
+                profile: null
         }))
 }), {
         name: 'auth'
